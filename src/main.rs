@@ -17,9 +17,9 @@ fn main() {
 
         .add_plugins((
             DefaultPlugins,
-            //WorldInspectorPlugin::new(),
+            WorldInspectorPlugin::new(),
             RapierPhysicsPlugin::<NoUserData>::default(),
-            //RapierDebugRenderPlugin::default(),
+            RapierDebugRenderPlugin::default(),
         ))
 
         .insert_resource(map::MapGrid(vec![
