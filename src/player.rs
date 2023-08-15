@@ -13,11 +13,15 @@ pub fn spawn_player(
     commands.spawn((
         Name::new("Player"),
         Player,
-        MovementBundle::new(5., 5.),
+        MovementBundle::new(2., 80., 5.),
         Collider::ball(0.2),
         RigidBody::Dynamic,
-        Friction::coefficient(0.7),
+        Friction::coefficient(3.7),
         Restitution::coefficient(1.),
+        Damping {
+            linear_damping: 0.5,
+            angular_damping: 1.0,
+        },
         Velocity::zero(),
         PbrBundle {
             mesh: meshes.add(Mesh::from(shape::UVSphere {
@@ -41,6 +45,6 @@ pub fn receive_input(
         controller.up_pressed = input.pressed(KeyCode::W);
         controller.down_pressed = input.pressed(KeyCode::S);
         controller.jump_just_pressed =
-            input.just_pressed(KeyCode::Space) && player_transform.translation.y < 2.4;
+            input.just_pressed(KeyCode::Space) && player_transform.translation.y < 2.9;
     }
 }
