@@ -8,7 +8,7 @@ A simple game made with Rust & Bevy
 
 
 ## D3mo
-https://yornaath.github.io/edu-front-end-3/
+https://yornaath.github.io/Mini-Golf-Kinda
 
 ### Credits
 Made [@zeitgeist.pm](https://zeitgeist.pm/) for the front-end educational show and tell talks(#3).
