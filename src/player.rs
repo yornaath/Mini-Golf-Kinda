@@ -16,13 +16,13 @@ pub fn spawn_player(
         MovementBundle::new(2., 80., 5.),
         Collider::ball(0.2),
         RigidBody::Dynamic,
-        Friction::coefficient(3.7),
+        Velocity::zero(),
         Restitution::coefficient(1.),
+        Friction::coefficient(3.7),
         Damping {
             linear_damping: 0.5,
             angular_damping: 1.0,
         },
-        Velocity::zero(),
         PbrBundle {
             mesh: meshes.add(Mesh::from(shape::UVSphere {
                 radius: 0.2,
