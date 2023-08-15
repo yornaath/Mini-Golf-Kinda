@@ -11,6 +11,7 @@ pub fn spawn_player(
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     commands.spawn((
+        Name::new("Player"),
         Player,
         MovementBundle::new(5., 5.),
         Collider::ball(0.2),
@@ -24,7 +25,7 @@ pub fn spawn_player(
                 ..Default::default()
             })),
             material: materials.add(Color::rgb(0.01, 0.7, 0.2).into()),
-            transform: Transform::from_xyz(2., 0.2, 3.),
+            transform: Transform::from_xyz(-4., 0.2, 3.),
             ..default()
         },
     ));
