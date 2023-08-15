@@ -1396,15 +1396,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "edu-front-end-3"
-version = "0.1.0"
-dependencies = [
- "bevy",
- "bevy-inspector-egui",
- "bevy_rapier3d",
-]
-
-[[package]]
 name = "egui"
 version = "0.22.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2142,6 +2133,15 @@ dependencies = [
  "foreign-types",
  "log",
  "objc",
+]
+
+[[package]]
+name = "mini-golf-kinda-edu-front-end-3"
+version = "0.1.0"
+dependencies = [
+ "bevy",
+ "bevy-inspector-egui",
+ "bevy_rapier3d",
 ]
 
 [[package]]
