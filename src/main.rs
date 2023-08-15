@@ -45,13 +45,12 @@ fn main() {
                 player::spawn_player
         ))
 
-        .add_systems(Update, 
+        .add_systems(Update,(
             (
-                (
-                    player::player_controller, 
-                    movement::update_movement
-                ).chain(), 
-            state::referee
+                player::receive_input, 
+                movement::update_movement,
+                state::referee
+            ).chain(),
         ).run_if(in_state(State::Playing)))
         
         .add_systems(OnEnter(State::Lost), ui::game_over)
