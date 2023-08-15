@@ -3,7 +3,7 @@ use bevy::{prelude::*, render::camera::ScalingMode};
 pub fn spawn_camera(mut commands: Commands) {
     commands.spawn((Camera3dBundle {
         projection: OrthographicProjection {
-            scale: 6.0,
+            scale: 5.0,
             scaling_mode: ScalingMode::FixedVertical(2.0),
             ..default()
         }

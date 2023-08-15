@@ -46,9 +46,8 @@ pub fn referee(
                         .intersection_pair(player_entity, tile_entity)
                         .is_some()
                     {
-                        for (floor_entity) in floor_query.iter_mut() {
-                            next_state.set(State::Won);
-                        }
+                        commands.entity(player_entity).despawn_recursive();
+                        next_state.set(State::Won);
                     }
                 }
             }
