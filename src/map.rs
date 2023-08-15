@@ -57,6 +57,8 @@ pub fn spawn_map(
                         Collider::cuboid(0.5, 0.5, 0.5),
                     ));
                 }
+
+                // Spawn the holes for every tile that is Hole.
                 Tile::Hole => {
                     commands.spawn((
                         Tile::Hole,
@@ -79,6 +81,7 @@ pub fn spawn_map(
                     ));
                 }
 
+                // Spawn the goal for every tile that is Goal.
                 Tile::Goal => {
                     commands.spawn((
                         Tile::Goal,
@@ -101,7 +104,7 @@ pub fn spawn_map(
                     ));
                 }
 
-                // Spawn nothing for every tile that is Empty.a
+                // Spawn nothing for every tile that is Empty.
                 Tile::Empty => {}
             }
         }

@@ -30,6 +30,7 @@ pub fn spawn_player(
         },
     ));
 }
+
 pub fn receive_input(
     input: Res<Input<KeyCode>>,
     mut query: Query<(&mut Controller, &Transform), With<Player>>,
