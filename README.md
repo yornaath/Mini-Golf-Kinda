@@ -1,4 +1,4 @@
-# Golf Kinda
+# Mini Golf Kinda
 
 Put the ball in the hole.
 
