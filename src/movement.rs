@@ -56,7 +56,8 @@ pub fn update_movement(mut query: Query<(&mut Velocity, &Controller, &RunSpeed, 
         let down: f32 = if controller.down_pressed { 1. } else { -1. };
 
         velocity.linvel.z += ((run_speed.0 / 100.) * (down - up)).clamp(MIN_VELOCITY, MAX_VELOCITY);
-        velocity.linvel.x += (0.04 * (right - left)).clamp(MIN_VELOCITY, MAX_VELOCITY);
+        velocity.linvel.x +=
+            ((run_speed.0 / 100.) * (right - left)).clamp(MIN_VELOCITY, MAX_VELOCITY);
 
         if controller.jump_just_pressed {
             velocity.linvel.y = jump_height.0;
