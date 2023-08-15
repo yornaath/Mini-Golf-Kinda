@@ -35,6 +35,9 @@ pub fn spawn_map(
         Collider::cuboid(6., 0.0, 6.),
     ));
 
+    // Iterate over the rows of tiles in the map grid
+    // and spawn the tiles based on the tile type.
+
     for (row_idx, row) in map.0.iter().enumerate() {
         for (tile_idx, tile) in row.iter().enumerate() {
             match tile {
@@ -59,6 +62,7 @@ pub fn spawn_map(
                 }
 
                 // Spawn the holes for every tile that is Hole.
+                // Add a sensor component to the holes so we can detect when the ball enters them.
                 Tile::Hole => {
                     commands.spawn((
                         Tile::Hole,
@@ -82,6 +86,7 @@ pub fn spawn_map(
                 }
 
                 // Spawn the goal for every tile that is Goal.
+                // Add a sensor component to the goal so we can detect when the ball enters it.
                 Tile::Goal => {
                     commands.spawn((
                         Tile::Goal,
