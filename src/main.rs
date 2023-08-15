@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
 use bevy_rapier3d::prelude::*;
+use map::Tile;
 
 mod camera;
 mod map;
@@ -17,18 +18,18 @@ fn main() {
             RapierDebugRenderPlugin::default(),
         ))
         .insert_resource(map::MapGrid(vec![
-            vec![1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            vec![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            vec![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            vec![1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1],
-            vec![1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-            vec![1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-            vec![1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-            vec![1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
-            vec![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            vec![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            vec![1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            vec![1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            vec![Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall],
         ]))
         .add_systems(Startup, (
                 map::spawn_map, 

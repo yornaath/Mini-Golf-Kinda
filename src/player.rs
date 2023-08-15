@@ -31,13 +31,14 @@ pub fn spawn_player(
 }
 pub fn player_controller(
     input: Res<Input<KeyCode>>,
-    mut query: Query<&mut Controller, With<Player>>,
+    mut query: Query<(&mut Controller, &Transform), With<Player>>,
 ) {
-    for mut controller in &mut query {
+    for (mut controller, player_transform) in &mut query {
         controller.right_pressed = input.pressed(KeyCode::D);
         controller.left_pressed = input.pressed(KeyCode::A);
         controller.up_pressed = input.pressed(KeyCode::W);
         controller.down_pressed = input.pressed(KeyCode::S);
-        controller.jump_just_pressed = input.just_pressed(KeyCode::Space);
+        controller.jump_just_pressed =
+            input.just_pressed(KeyCode::Space) && player_transform.translation.y < 2.4;
     }
 }
