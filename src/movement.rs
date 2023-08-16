@@ -89,7 +89,6 @@ pub fn update_movement(
         };
 
         velocity.linvel.z += ((acceleration) * (down - up)).clamp(max_speed * -1., max_speed);
-
         velocity.linvel.x += ((acceleration) * (right - left)).clamp(max_speed * -1., max_speed);
 
         if controller.jump_just_pressed {
