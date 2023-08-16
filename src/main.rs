@@ -8,6 +8,7 @@ mod camera;
 mod map;
 mod movement;
 mod player;
+mod powerup;
 mod state;
 mod ui;
 
@@ -30,8 +31,8 @@ fn main() {
             vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Hole, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
             vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Hole, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall],
             vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall],
-            vec![Tile::Wall, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall],
-            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Wall, Tile::Powerup(powerup::PowerupType::Antigravity), Tile::Empty, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Wall],
+            vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Powerup(powerup::PowerupType::Boost), Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
             vec![Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Hole, Tile::Empty, Tile::Wall],
             vec![Tile::Wall, Tile::Empty, Tile::Wall, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Empty, Tile::Wall],
             vec![Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall, Tile::Wall],
@@ -49,6 +50,8 @@ fn main() {
             (
                 player::receive_input, 
                 movement::update_movement,
+                powerup::detect_pick_up,
+                powerup::power_down,
                 state::referee
             ).chain(),
         ).run_if(in_state(State::Playing)))

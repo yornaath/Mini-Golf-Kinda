@@ -1,6 +1,8 @@
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
+use crate::powerup::PowerupType;
+
 #[derive(Debug, Resource)]
 pub struct MapGrid(pub Vec<Vec<Tile>>);
 
@@ -10,6 +12,7 @@ pub enum Tile {
     Empty,
     Goal,
     Hole,
+    Powerup(PowerupType),
 }
 
 #[derive(Debug, Component)]
@@ -96,6 +99,32 @@ pub fn spawn_map(
                                 vertices: 20,
                             })),
                             material: materials.add(Color::rgb(0.9, 0.8, 0.1).into()),
+                            transform: Transform::from_xyz(
+                                ((0.5 - (size / 2.)) + tile_idx as f32) as f32,
+                                0.02,
+                                ((0.5 - (size / 2.)) + row_idx as f32) as f32,
+                            )
+                            .with_rotation(Quat::from_rotation_x(-std::f32::consts::FRAC_PI_2)),
+                            ..default()
+                        },
+                        Collider::ball(0.2),
+                        Sensor,
+                    ));
+                }
+
+                Tile::Powerup(PowerupType) => {
+                    let color = match PowerupType {
+                        PowerupType::Boost => Color::ORANGE,
+                        PowerupType::Antigravity => Color::rgb(0.9, 0.02, 0.9),
+                    };
+                    commands.spawn((
+                        PowerupType.clone(),
+                        PbrBundle {
+                            mesh: meshes.add(Mesh::from(shape::UVSphere {
+                                radius: 0.2,
+                                ..default()
+                            })),
+                            material: materials.add(color.into()),
                             transform: Transform::from_xyz(
                                 ((0.5 - (size / 2.)) + tile_idx as f32) as f32,
                                 0.02,

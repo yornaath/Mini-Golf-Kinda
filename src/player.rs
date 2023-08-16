@@ -16,6 +16,7 @@ pub fn spawn_player(
         MovementBundle::new(2., 80., 5.),
         Collider::ball(0.2),
         RigidBody::Dynamic,
+        GravityScale(1.5),
         Velocity::zero(),
         Restitution::coefficient(1.),
         Friction::coefficient(3.7),
